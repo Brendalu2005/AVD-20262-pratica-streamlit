@@ -72,6 +72,23 @@ streamlit run app.py
 
 ## Passo a passo
 
+### Implementação Spotify — Aula 22
+
+Execute `streamlit run app.py` (a entrada `app_spotify.py` abre o mesmo app).
+O app contém duas abas: exploração quantitativa com correlação Pearson/Spearman
+e histogramas, e indicadores com seleção de gênero vinculada aos KPIs, ranking
+e dispersão. Os filtros compartilhados são gênero, tipo e ano de estreia;
+os intervalos numéricos do Dashboard 1 se aplicam somente à exploração.
+
+O CSV contém volumes acumulados por artista, sem série temporal. Streams são
+expressos em milhões; a soma dos volumes atribuídos não mede streams únicos.
+Consulte [justificativa das métricas](entregas/justificativa-metricas.md),
+[rascunho do Dashboard 2](entregas/rascunho-dashboard2.png) e
+[guia de seleção](ALTAIR-CROSSFILTER.md).
+
+Validação: `python -m unittest discover -s tests -v`.
+Para recriar o wireframe: `python scripts/gerar_rascunho.py`.
+
 1. Substitua `notebooks/eda.ipynb` pelo seu notebook de EDA (Aula 11) e exporte o dado tratado para `data/clean/`.
 2. Construa o `app.py` em cima do esqueleto (sidebar, filtros, Dashboard 1 e Dashboard 2).
 3. Faça o deploy no Streamlit Community Cloud (Aula 23).
