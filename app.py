@@ -6,9 +6,9 @@ from src.analytics import (GENRE, TYPE, YEAR, NUMERIC, STREAMS, calculate_kpis,
                            correlation_table, filter_data, select_genres, top_artists)
 from src.data_loader import load_data
 
-st.set_page_config(page_title="Spotify | Audiência em foco", page_icon=":material/music_note:", layout="wide")
+st.set_page_config(page_title="Spotify", page_icon=":material/music_note:", layout="wide")
 ACCENT = st.get_option("theme.primaryColor") or "#1DB954"
-st.title("Spotify — audiência em foco")
+st.title("Spotify - análise de artistas e streams")
 st.caption("Explore relações entre variáveis e compare a audiência acumulada dos artistas.")
 try:
     df = load_data()
