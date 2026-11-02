@@ -8,7 +8,7 @@ import streamlit as st
 from streamlit.testing.v1 import AppTest
 
 from src.analytics import (GENRE, TYPE, YEAR, STREAMS, NUMERIC, calculate_kpis,
-                           correlation_table, filter_data, select_genres)
+                           correlation_table, filter_data, select_genres, top_artists)
 from src.data_loader import load_data
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,14 +81,48 @@ class DashboardTests(unittest.TestCase):
         self.assertFalse(at.exception)
         self.assertTrue(any("pelo menos dois registros" in item.value for item in at.info))
 
-    def test_filter_and_ranking_metrics(self):
+    def test_shared_artist_limit_updates_both_dashboards(self):
         at = self.app()
+        at.toggle(key="limit_artists").set_value(True).run()
+        at.number_input(key="artist_limit").set_value(50).run()
+        expected = top_artists(load_data(), 50)
+        self.assertEqual(at.metric[0].value, "50")
+        self.assertEqual(at.metric[1].value, f"{expected[STREAMS].sum():,.1f} mi")
+        chart_data = []
+        original = st.altair_chart
+
+        def capture_data(*args, **kwargs):
+            chart_data.append(args[0].data)
+            return original(*args, **kwargs)
+
+        with patch("streamlit.altair_chart", side_effect=capture_data):
+            at.run()
+        # Heatmap, histograma, gêneros, ranking e dispersão.
+        self.assertEqual(len(chart_data), 5)
+        pd.testing.assert_frame_equal(chart_data[0], correlation_table(expected, tuple(NUMERIC[:3]), "pearson"))
+        for data in chart_data[1:]:
+            self.assertEqual(set(data["Artist Name"]), set(expected["Artist Name"]))
+        at.number_input(key="artist_limit").set_value(100).run()
+        self.assertEqual(at.metric[0].value, "100")
+        at.toggle(key="limit_artists").set_value(False).run()
+        self.assertEqual(at.metric[0].value, str(len(load_data())))
+        self.assertFalse(at.exception)
+
+    def test_artist_limit_with_fewer_available_and_empty_filters(self):
+        at = self.app()
+        at.toggle(key="limit_artists").set_value(True).run()
+        at.number_input(key="artist_limit").set_value(500).run()
         at.multiselect(key="genres").set_value(["Pop"]).run()
         expected = load_data().loc[lambda df: df[GENRE].eq("Pop")]
-        self.assertEqual(at.metric[0].value, str(expected["Artist Name"].nunique()))
-        before = [metric.value for metric in at.metric]
-        at.slider(key="ranking_limit").set_value(5).run()
-        self.assertEqual([metric.value for metric in at.metric], before)
+        self.assertEqual(at.number_input(key="artist_limit").value, 500)
+        self.assertEqual(at.metric[0].value, str(len(expected)))
+        self.assertTrue(any("disponíveis" in info.value for info in at.info))
+        at.multiselect(key="genres").set_value([]).run()
+        self.assertEqual(at.metric[0].value, "0")
+        at.multiselect(key="genres").set_value(["Pop"]).run()
+        at.number_input(key="artist_limit").set_value(1).run()
+        self.assertEqual(at.metric[0].value, "1")
+        self.assertTrue(any("pelo menos dois registros" in info.value for info in at.info))
         self.assertFalse(at.exception)
 
     def test_alternative_entrypoint(self):
@@ -96,6 +130,7 @@ class DashboardTests(unittest.TestCase):
         self.assertFalse(at.exception)
         self.assertEqual(len(at.tabs), 2)
 
+    # [IA] Codex (OpenAI) – simulação do evento de seleção para validar KPIs e dados dos gráficos vinculados.
     def test_chart_selection_updates_dashboard_metrics(self):
         original = st.altair_chart
         secondary_data = []

@@ -1,71 +1,128 @@
-# Declaração de Uso de IA
+# Registro de uso de IA — apoio ao preenchimento da declaração
 
 **Nome:** Brenda Luana Correia Bezerra
-**Datas:** 27/10/2026 e 02/11/2026
 
-## Ferramenta
+**Datas dos usos registrados:** 27/10/2026 e 02/11/2026
 
-Codex (OpenAI), no ambiente de desenvolvimento do projeto. Identificador exato do modelo não exposto nesta sessão.
+**Repositório:** https://github.com/Brendalu2005/AVD-20262-pratica-streamlit
 
-## Prompt usado
+## Como ler este registro
 
-### Conversa 1 — Git
+Os pedidos abaixo são **resumos das solicitações reais, agrupados por finalidade**,
+não transcrições literais nem novos prompts apresentados como históricos.
+Não são uma cópia completa das conversas. O registro descreve as contribuições
+por etapa. A ausência de marcação não identifica, por si só, a autoria de um trecho.
 
-> como fazer merge sem perder minhas alterações remotas?
+Este Markdown não substitui o formulário individual da disciplina, a reflexão
+pessoal, a assinatura ou a entrega de `prompts/DECLARACAO_IA.pdf` no repositório
+e no Classroom. A opção de registro por blocos deve ser completada no formulário
+com os usos relevantes; a alternativa de conversas completas exige os links
+ou arquivos correspondentes.
 
-A IA consultou o estado local e explicou `git fetch origin`, `git merge origin/main`, resolução de conflitos, `git merge --abort` e push normal. Não executou o merge nessa etapa.
+## Ferramenta e skill utilizadas
 
-### Conversa 2 — implementação da aula
+- **Ferramenta:** Codex, da OpenAI, no ambiente de desenvolvimento. Modelo exato
+  e plano não foram confirmados para todos os usos; não foram presumidos.
+- **Skill oficial do Streamlit: utilizada.** A revisão consultou
+  `developing-with-streamlit` e as referências da instalação local para
+  layouts, temas, widgets e testes. Não se trata de uma ferramenta de IA
+  independente, mas de instruções e documentação usadas pelo Codex.
+- **Outros apoios técnicos:** na conferência do formulário, a skill de PDF
+  orientou a leitura e inspeção das cinco páginas do documento.
 
-Pedido registrado abaixo em texto normalizado (sem os escapes de Markdown enviados pelo editor):
+## Participação da autoria registrada na conversa
 
-> implemente os seguintes requisitos, se ainda não forem implementados:
->
-> 1. Adicione os gráficos de verdade ao Dashboard 1, usando `@st.cache_data`. Seaborn é permitido, Plotly é uma opção interativa e Altair é preferível pela seleção vinculada entre gráficos. Consulte `ALTAIR-CROSSFILTER.md`.
-> 2. Teste o Dashboard 1 com 0 variáveis, 1 variável, 2 ou mais e o recálculo de correlação/distribuição com combinações distintas de widgets. Ajuste o que quebrar.
-> 3. Escolha fundo, cor de destaque e fonte em `.streamlit/config.toml`.
-> 4. Estruture o Dashboard 2: selecione as variáveis dos KPIs; proponha métricas ligadas à Teoria de Métricas Básicas; defina os widgets antes de codar; só então desenhe o rascunho em `entregas/rascunho-dashboard2.jpg` ou `.png`.
-> 5. Crie abas `st.tabs` separando os dashboards no mesmo app.
-> 6. Implemente o Dashboard 2 a partir do rascunho: widgets, `st.metric` e visuais Altair. Ligue seleção gráfica às métricas e outros gráficos conforme o guia.
-> 7. Documente a escolha das métricas e o que comunicam em `entregas/justificativa-metricas.md`.
-> 8. Atualize `prompts/declaracao-uso-ia.md` com as conversas desta aula.
-> 9. Commit + push.
->
-> As entregas da aula devem ficar completas; implementação pendente pode terminar na Aula 23.
+- Trouxe ao projeto o dataset Spotify e o notebook pessoal de EDA já existente.
+- Forneceu o roteiro, o guia `ALTAIR-CROSSFILTER.md`, as referências de layout
+  e o modelo formal de declaração para orientar e conferir o trabalho.
+- Solicitou implementações e revisões, estabelecendo limites como apresentar
+  o resultado para aprovação e não realizar o deploy naquela etapa.
+- Aprovou a revisão anterior e posteriormente autorizou ajustes documentais.
+- Identificou o problema do limite de artistas e confirmou que queria analisar
+  até 50 artistas em todos os gráficos e indicadores.
 
-Complemento do usuário:
+Essas ações demonstram direcionamento e revisão pela autoria. A conversa não
+permite quantificar uma porcentagem de trabalho humano nem afirmar compreensão
+individual de cada trecho, realização de todos os testes pela autoria ou
+escolha exclusivamente humana das métricas.
 
-> adicionei ALTAIR-CROSSFILTER.md
+## Usos registrados
 
-A IA leu o guia adicionado e adaptou o exemplo de seleção por clique para `Primary Genre` no CSV do Spotify. Planejou e gerou o wireframe antes de implementar o Dashboard 2. Produziu código, documentação e testes automatizados com `unittest` e `AppTest`.
+### 1. Orientação sobre Git — 27/10/2026
 
-## O que foi aceito, modificado ou rejeitado e por quê
+- **Parte:** fluxo de trabalho do repositório.
+- **Pedido, em resumo:** entender como integrar alterações remotas sem perder o trabalho local.
+- **Contribuição da IA:** explicação de fetch, merge, resolução de conflitos e recuperação com abort, conforme o registro anterior.
+- **Aproveitamento e decisões:** orientação para a autoria; não há registro de merge executado pela IA naquela etapa.
+- **Verificação:** consulta do estado local; não se atribui à autoria uma execução não confirmada.
 
-- **Implementado para revisão da autoria:** dois dashboards, gráficos Altair, cache, filtros, tema laranja, rascunho, justificativas e testes. A validação acadêmica final cabe à autoria; não houve declaração posterior de aceite de cada escolha.
-- **Modificado pela IA no esqueleto:** colunas de doenças cardíacas substituídas pelas colunas reais do Spotify. `app_spotify.py` passou a abrir a mesma implementação de `app.py`, evitando dois apps divergentes.
-- **Escolhas técnicas:** KPIs de volume, tendência central e concentração; seleção de gênero com `on_select="rerun"`; ano de estreia não apresentado como período de streams.
-- **Rejeitado pelo usuário:** nenhuma rejeição explicitada nesta conversa.
+### 2. Implementação dos dashboards — 27/10/2026
 
-## Conversas de 02/11/2026 — conferência e revisão antes do deploy
+- **Parte:** `app.py`, `app_spotify.py`, `src/`, tema, wireframe do Dashboard 2, justificativas e testes.
+- **Pedido, em resumo:** auxiliar a implementar os requisitos da aula, incluindo gráficos, cache, abas, KPIs, seleção vinculada e documentação.
+- **Contribuição da IA:** produção e adaptação de código para as colunas do Spotify, implementação da interação Altair/Streamlit, geração de wireframe, redação de documentação e testes automatizados.
+- **Aproveitamento e decisões:** o resultado foi incorporado ao projeto e submetido a revisão. Houve sugestões de métricas e redação das justificativas pela IA; não se registra esse apoio como apenas sintático ou exclusivamente consultivo.
+- **Verificação:** o registro anterior informa seis testes aprovados com unittest e AppTest em 27/10/2026.
 
-> com base no arquivo ROTEIRO.md veja oque está faltando no meu projeto
+### 3. Conferência e correções antes do deploy — 02/11/2026
 
-> antes de ir para a etapa de deploy, verifique se está tudo coerente, dashboard e rascunhos, e realize as implementações que faltam de acordo com o solicitado MENOS a etapa de deploy, e me mande antes para eu aprovar
+- **Parte:** roteiro, notebooks, dados tratados, dashboards, rascunhos e documentação.
+- **Pedido, em resumo:** identificar pendências, conferir coerência com o roteiro e corrigir o que faltava antes da publicação, apresentando o resultado para aprovação.
+- **Contribuição da IA:** revisão do projeto; correção da exportação para o Spotify; validação do CSV; alinhamento das cores ao tema escuro/verde existente; revisão dos wireframes e atualização dos testes e documentos.
+- **Aproveitamento e decisões:** a autoria aprovou a revisão. A EDA pessoal foi preservada. A proposta visual inicial foi mantida como histórico. O commit `24c19e0` registra essa revisão anterior, não todas as alterações posteriores.
+- **Verificação:** os testes automatizados foram executados pela IA; os valores das 14 colunas mantidas foram comparados aos do CSV anterior, sem diferenças nas 500 linhas. Posteriormente, em 02/11/2026, a autoria confirmou nesta conversa que realizou todos os itens da conferência visual no navegador e que tudo funciona corretamente.
 
-A IA comparou o roteiro, código, dados, notebooks e as duas imagens. A imagem
-inicialmente chamada Dashboard 1 representava KPIs/ranking; foi preservada como
-`entregas/proposta-inicial-spotify.png`. Os wireframes foram revisados para
-representar correlação/distribuição na aba 1 e KPIs/seleção/ranking/dispersão
-na aba 2. Essas imagens revisadas foram feitas após a implementação e não
-comprovam planejamento anterior. O tema escuro/verde já existente foi mantido,
-e a cor dos gráficos foi alinhada a ele.
+### 4. Discussão sobre métricas e gráficos — 02/11/2026
 
-O notebook de exportação foi adaptado ao Spotify com leitura manual do CSV
-bruto e exportação das colunas usadas como fonte, preservando os volumes
-originais e a EDA original. Foram acrescentadas validações do esquema e de
-uma linha por artista para impedir que um CSV incompatível produza KPIs
-incorretos. A documentação e os testes foram atualizados.
+- **Parte:** adequação e limites dos indicadores e visuais existentes.
+- **Pedido, em resumo:** avaliar se as métricas e gráficos utilizados eram adequados ao dashboard.
+- **Contribuição da IA:** explicação das perguntas atendidas e dos limites de soma, mediana, Top 5, correlação, distribuição e comparação entre gêneros.
+- **Aproveitamento e decisões:** não foi registrada nessa discussão uma substituição de métricas ou gráficos. A escolha acadêmica e a validação individual precisam ser confirmadas pela autoria.
+- **Verificação:** análise conceitual dos indicadores implementados; não equivale a uma justificativa pessoal escrita pela estudante.
 
-**Situação de aceite:** alterações preparadas para revisão de Brenda Luana
-Correia Bezerra; aprovação ainda pendente. Não houve deploy, commit nem push
-nesta revisão. Não há rejeição registrada das escolhas propostas.
+### 5. Melhoria do limite de artistas — 02/11/2026
+
+- **Parte:** sidebar, preparação do recorte, ranking, testes e wireframes.
+- **Pedido, em resumo:** corrigir o comportamento que mantinha dez artistas no ranking e fazia apenas um gráfico responder ao controle de quantidade.
+- **Contribuição da autoria:** relatou o comportamento e confirmou o requisito de até 50 artistas em todos os gráficos e indicadores.
+- **Contribuição da IA:** implementação do limite opcional compartilhado, seleção dos maiores volumes dentro dos filtros, ranking completo com rolagem e ajuda para distinguir quantidade de artistas de classes do histograma.
+- **Aproveitamento e decisões:** o comportamento foi implementado conforme o requisito confirmado. As fórmulas dos KPIs foram mantidas, passando a responder ao novo recorte.
+- **Verificação:** doze testes aprovados, incluindo limites de 50 e 100 artistas, comparação dos dados dos cinco gráficos, recorte vazio, poucos artistas e limite de um artista.
+
+### 6. Formulário e marcações de IA — 02/11/2026
+
+- **Parte:** modelo PDF de declaração, código e registros de uso.
+- **Pedido, em resumo:** comparar o projeto com as exigências do formulário e acrescentar marcações de apoio de IA no código.
+- **Contribuição da IA:** leitura do formulário, identificação das pendências e inclusão de comentários `[IA]` em blocos de gráficos, seleção vinculada, correlação, KPIs, validação e testes de integração.
+- **Aproveitamento e decisões:** comentários adicionados aos blocos complexos. As marcações permanecem parciais e não cobrem todos os trechos com apoio de IA exigidos pelo formulário.
+- **Verificação:** conferência dos comentários e do diff, sem mudança funcional nessa etapa.
+
+### 7. Auditoria e atualização documental — 02/11/2026
+
+- **Parte:** READMEs, justificativa, validação, prompts e registros de aprovação.
+- **Pedido, em resumo:** conferir o atendimento ao roteiro e aos rascunhos, apresentar pendências antes de implementar e, após autorização, atualizar os registros com resumos dos pedidos.
+- **Contribuição da IA:** conferência dos arquivos e execução dos doze testes; correção de instruções antigas da UCI; registro das aprovações e separação entre alterações anteriores já commitadas e mudanças locais posteriores.
+- **Aproveitamento e decisões:** a autoria autorizou os ajustes. Os pedidos foram resumidos, sem inventar falas nem reduzir a contribuição documentada da IA a simples aconselhamento.
+- **Verificação:** conferência documental e `git diff --check`. Não houve nova execução dos testes por mudanças somente textuais.
+
+## Rascunhos e autoria das decisões analíticas
+
+Os wireframes atuais de 02/11/2026 documentam revisões posteriores à implementação.
+Isso está identificado nas imagens; não são apresentados como comprovação de
+planejamento anterior. A proposta inicial foi preservada em
+`entregas/proposta-inicial-spotify.png`.
+
+A IA participou da proposta e da redação das justificativas das métricas. O
+formulário da disciplina restringe esse tipo de uso. A aprovação da implementação
+não altera esse histórico nem substitui a escolha e explicação individual.
+A autoria deve esclarecer com a professora como regularizar os itens afetados,
+sem substituir o histórico por uma descrição de apoio apenas consultivo.
+
+## Situação e complementação individual
+
+- Revisão anterior aprovada; ajustes dos filtros solicitados e confirmados; atualização documental autorizada.
+- Marcações nos blocos complexos mantidas.
+- Alterações posteriores ao commit `24c19e0` ainda precisam de commit e push.
+- Conferência visual no navegador realizada e aprovada pela autoria, conforme confirmação nesta conversa em 02/11/2026. Deploy e teste do link público ainda não foram concluídos.
+- Formulário PDF assinado ainda não entregue no repositório. Turma, e-mail, data de entrega, reflexão de 8 a 15 linhas e assinatura precisam ser conferidos ou completados pela autoria.
+- Nenhuma reflexão individual, assinatura ou declaração de compreensão do código foi produzida em nome da estudante.

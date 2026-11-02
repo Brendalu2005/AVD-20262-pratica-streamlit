@@ -22,7 +22,7 @@ Artefatos de entrega que não são sobre uso de IA (isso fica em [`prompts/`](..
 - [x] Os dois rascunhos
 - [x] `justificativa-metricas.md` completo
 
-## Revisão para aprovação — 02/11/2026
+## Histórico da revisão — 02/11/2026
 
 Os dois `rascunho-dashboard*.png` foram revisados nesta data para corresponder
 às abas atuais e ao tema escuro/verde. São revisões posteriores à implementação,
@@ -33,10 +33,13 @@ exigida para o Dashboard 1. O wireframe do Dashboard 2 já existia antes desta r
 
 O Dashboard 1 reúne correlação, distribuição e controles de exploração;
 o Dashboard 2 reúne quatro KPIs, seleção por gênero, ranking e dispersão.
-O controle do tamanho do ranking fica dentro da aba 2, como no app.
+O limite opcional de artistas fica na sidebar e afeta os dois dashboards.
+O ranking mostra todos os artistas com streams válidos desse recorte, com rolagem.
 
-- [ ] Aprovação da autoria sobre esta revisão
+- [x] Aprovação da revisão anterior e autorização dos ajustes documentais nesta conversa
 - [ ] Commit e push da versão aprovada
+- [x] Conferência visual e clique real nos gráficos no navegador — realizados e aprovados pela autoria em 02/11/2026
+- [ ] Declaração formal de IA preenchida e assinada
 - [ ] Deploy, link público e teste publicado — etapa posterior, fora desta revisão
 
 ## Modelo de `justificativa-metricas.md`

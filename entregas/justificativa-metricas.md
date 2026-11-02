@@ -6,8 +6,8 @@ Público: estudantes e analistas de música interessados na distribuição da au
 
 1. Variáveis: `Artist Name`, `Total Streams (in millions)`, `Primary Genre`, `Artist Type` e `Debut Year`. Streams são expressos em milhões.
 2. Métricas: contagem de artistas, soma de streams atribuídos, mediana por artista e participação do Top 5 no recorte.
-3. Widgets: multisseleção de gêneros e tipos, intervalo de estreia e tamanho do ranking (5–20). Categorias vazias significam nenhum artista. O ano filtra a estreia, não a data das reproduções. Clique em uma barra de gênero restringe KPIs, ranking e dispersão; Shift permite múltiplos gêneros e duplo clique limpa a seleção.
-4. Layout: sidebar compartilhada; duas abas; no Dashboard 2, tamanho do ranking na própria aba, quatro KPIs, barras de gênero para seleção e ranking/dispersão abaixo. O wireframe original foi revisado em 02/11/2026; `rascunho-dashboard2.png` documenta agora essa revisão para aprovação, com o tema escuro/verde do app.
+3. Widgets: multisseleção de gêneros e tipos, intervalo de estreia e limite opcional de artistas na sidebar. Com o limite ligado, o recorte mantém até N artistas com mais streams após os filtros de categoria e estreia; o mesmo conjunto alimenta os dois dashboards. Desligado, usa todos os disponíveis. Categorias vazias significam nenhum artista. O ano filtra a estreia, não a data das reproduções. Clique em uma barra de gênero restringe KPIs, ranking e dispersão; Shift permite múltiplos gêneros e duplo clique limpa a seleção.
+4. Layout: sidebar compartilhada; duas abas; no Dashboard 2, quatro KPIs, barras de gênero para seleção e ranking/dispersão abaixo. O ranking exibe todos os artistas com streams válidos do recorte, com rolagem. O wireframe original foi revisado em 02/11/2026; `rascunho-dashboard2.png` documenta essa revisão, com o tema escuro/verde do app.
 
 Preparação: `notebooks/eda-com-downloads.ipynb` lê o CSV local do Spotify e
 exporta as colunas da fonte para `data/clean/dataset.csv`. Os volumes usados
@@ -46,8 +46,8 @@ experimentais da EDA, como `anos_carreira` com referência 2010 e
 - **Teoria:** proporção percentual, medida de concentração.
 - **Por que foi escolhida:** revela quanto da audiência depende de poucos artistas.
 - **O que comunica ao público:** concentração de volume entre as maiores audiências.
-- **Decisão apoiada:** discutir diversidade e concentração no segmento. O tamanho do ranking não altera esta definição fixa de Top 5.
+- **Decisão apoiada:** discutir diversidade e concentração no segmento. A definição de Top 5 é fixa; o denominador acompanha os filtros, incluindo o limite de artistas quando ativado.
 
 ## Regras e limites comuns
 
-Todos os KPIs respondem à sidebar e ao clique no gráfico de gêneros. Recortes vazios mostram contagem zero e “Sem dados” nas métricas de streams. O ranking não limita a população dos KPIs. Valores inválidos, infinitos ou negativos de streams são tratados como ausentes. Não se inferem causalidade, crescimento ou evolução temporal deste retrato. Categorias ausentes aparecem como “Não informado”.
+Todos os KPIs respondem à sidebar e ao clique no gráfico de gêneros. Recortes vazios mostram contagem zero e “Sem dados” nas métricas de streams. O limite de artistas é aplicado antes da seleção gráfica de gêneros: essa seleção pode reduzir ainda mais a quantidade exibida. N é um teto, não uma garantia de quantidade quando os demais filtros deixam menos artistas. O limite representa os maiores volumes acumulados, não uma amostra aleatória. Valores inválidos, infinitos ou negativos de streams são tratados como ausentes. Não se inferem causalidade, crescimento ou evolução temporal deste retrato. Categorias ausentes aparecem como “Não informado”.

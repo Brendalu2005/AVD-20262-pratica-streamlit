@@ -13,12 +13,14 @@ def load_data(path="data/clean/dataset.csv"):
     if not source.is_absolute():
         source = Path(__file__).resolve().parents[1] / source
     df = pd.read_csv(source)
+    # [IA] Codex (OpenAI) – validação do esquema e da unicidade de artistas antes do cálculo dos indicadores.
     required = {"Artist Name", GENRE, TYPE, *NUMERIC}
     missing = required.difference(df.columns)
     if missing:
         raise ValueError("Colunas obrigatórias ausentes: " + ", ".join(sorted(missing)))
     if df["Artist Name"].isna().any() or df["Artist Name"].duplicated().any():
         raise ValueError("O CSV deve conter uma linha por artista, com nomes preenchidos e únicos.")
+    # [IA] Codex (OpenAI) – conversão numérica e exclusão de valores negativos, inválidos ou infinitos.
     for column in df.columns:
         if "Streams" in column or column == "Debut Year":
             values = pd.to_numeric(df[column], errors="coerce")

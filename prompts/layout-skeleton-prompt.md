@@ -18,12 +18,15 @@ Colunas: `Artist Name`, `Primary Genre`, `Artist Type`, `Debut Year`,
 `Feature Streams (in millions)`, `Solo Streams (in millions)` e
 `Collaborative Streams (in millions)`.
 
-- Sidebar: gêneros e tipos por multisseleção; intervalo do ano de estreia.
+- Sidebar: gêneros e tipos por multisseleção; intervalo do ano de estreia;
+  limite opcional de artistas, selecionando até N maiores volumes nos filtros
+  e aplicando esse mesmo conjunto aos dois dashboards.
 - Dashboard 1: seleção de variáveis, intervalos numéricos, Pearson/Spearman,
   heatmap de correlação e histograma com escolha de variável/classes e cor por gênero.
-- Dashboard 2: slider do tamanho do ranking na aba, contagem de artistas,
+- Dashboard 2: contagem de artistas,
   soma atribuída, mediana de streams e participação do Top 5; barras de gênero
   com seleção vinculada aos KPIs, ranking e dispersão principal × participação.
+  O ranking deve exibir todo o recorte com rolagem, sem um segundo limite independente.
 
 ## Restrições
 

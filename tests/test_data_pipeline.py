@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DataPipelineTests(unittest.TestCase):
+    # [IA] Codex (OpenAI) – execução isolada do notebook para conferir exportação e preservação do CSV bruto.
     def test_export_notebook_preserves_source_and_dashboard_values(self):
         notebook = json.loads((ROOT / "notebooks/eda-com-downloads.ipynb").read_text(encoding="utf-8"))
         # Fixture derivada do CSV versionado: os testes também rodam sem data/raw/.

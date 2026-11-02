@@ -49,7 +49,7 @@ streamlit run app.py
 - **Python fora de 3.11–3.15:** instale uma versão compatível em [python.org](https://www.python.org/downloads/) e crie o venv com ela, como no exemplo acima.
 - **Apareceu `ModuleNotFoundError` ou `streamlit: command not found`:** o venv provavelmente não está ativo. Ative de novo e confira o `(.venv)` no prompt.
 - **Erro de certificado no `pip install` (macOS, Python do python.org):** rode `Install Certificates.command`, na pasta Python 3.X em Aplicativos.
-- **`DatasetNotFoundError` ao baixar o dataset no notebook (macOS, Python do python.org):** é o mesmo problema de certificado SSL (o `pandas` não consegue ler o CSV da UCI). Rode `Install Certificates.command` e reinicie o kernel. O notebook `eda-com-downloads.ipynb` já define `SSL_CERT_FILE` com o `certifi` como contorno.
+- **CSV do Spotify não encontrado:** coloque `Spotify Streaming Performance Dataset.csv` em `data/raw/` antes de executar `notebooks/eda-com-downloads.ipynb`. Esse notebook usa leitura local, sem download da UCI nem configuração de certificados.
 
 ## Estrutura de dados: `data/raw` vs `data/clean`
 
@@ -77,7 +77,13 @@ streamlit run app.py
 Execute `streamlit run app.py` (a entrada `app_spotify.py` abre o mesmo app).
 O app contém duas abas: exploração quantitativa com correlação Pearson/Spearman
 e histogramas, e indicadores com seleção de gênero vinculada aos KPIs, ranking
-e dispersão. Os filtros compartilhados são gênero, tipo e ano de estreia;
+e dispersão. Os filtros compartilhados são gênero, tipo, ano de estreia e
+limite opcional de artistas. Ative “Limitar quantidade de artistas” na sidebar
+e informe, por exemplo, 50 em “Máximo de artistas”: os dois dashboards passam
+a usar até os 50 artistas com mais streams dentro dos demais filtros.
+Desative o limite para usar todos os disponíveis. O ranking exibe o recorte
+inteiro, com rolagem. “Número máximo de classes” controla somente os
+agrupamentos do histograma, sem alterar a quantidade de artistas;
 os intervalos numéricos do Dashboard 1 se aplicam somente à exploração.
 
 O CSV contém volumes acumulados por artista, sem série temporal. Streams são
@@ -89,7 +95,7 @@ Consulte [justificativa das métricas](entregas/justificativa-metricas.md),
 
 Validação: `python -m unittest discover -s tests -v`.
 Para recriar os dois wireframes revisados: `python scripts/gerar_rascunho.py`.
-As imagens de 02/11/2026 são revisões posteriores à implementação, para aprovação.
+As imagens de 02/11/2026 são revisões posteriores à implementação.
 A proposta visual inicial foi preservada em `entregas/proposta-inicial-spotify.png`.
 
 1. `notebooks/eda.ipynb` contém a EDA pessoal preservada; `arquivo-eda-original.ipynb` mantém o exemplo do professor.
@@ -97,9 +103,13 @@ A proposta visual inicial foi preservada em `entregas/proposta-inicial-spotify.p
 3. O notebook exporta `data/clean/dataset.csv` com as colunas da fonte, nomes normalizados e validações, mantendo os volumes originais. Colunas experimentais/logs da EDA não são necessárias ao app.
 4. Execute os testes e `streamlit run app.py` para revisar as duas abas.
 
-**Estado em 02/11/2026:** revisão local anterior ao deploy, aguardando aprovação
-da autoria. Commit/push e publicação serão feitos em uma etapa posterior.
-O link público e os testes da versão publicada ainda estão pendentes.
+**Estado em 02/11/2026:** a autoria aprovou a revisão anterior e autorizou os
+ajustes de documentação após a conferência. O limite compartilhado de artistas
+foi implementado conforme a confirmação da autoria. O commit `24c19e0` registra
+a revisão anterior; as alterações locais posteriores ainda precisam de commit
+e push. A autoria confirmou em 02/11/2026 que realizou a conferência visual
+no navegador e que todos os itens funcionam corretamente. A declaração formal
+assinada, a publicação e o teste do link público continuam pendentes.
 
 ## IA neste projeto
 

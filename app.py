@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 
 from src.analytics import (GENRE, TYPE, YEAR, NUMERIC, STREAMS, calculate_kpis,
-                           correlation_table, filter_data, select_genres)
+                           correlation_table, filter_data, select_genres, top_artists)
 from src.data_loader import load_data
 
 st.set_page_config(page_title="Spotify | Audiência em foco", page_icon=":material/music_note:", layout="wide")
@@ -31,15 +31,30 @@ with st.sidebar:
         else:
             st.caption(f"Único ano de estreia: {low}")
     st.caption("Ano de estreia do artista; não é o período das reproduções. Categorias vazias não selecionam artistas.")
+    use_artist_limit = st.toggle("Limitar quantidade de artistas", key="limit_artists")
+    artist_limit = st.number_input(
+        "Máximo de artistas", min_value=1, max_value=max(1, len(df)),
+        value=min(50, max(1, len(df))), step=1, disabled=not use_artist_limit,
+        key="artist_limit",
+        help="Mantém os artistas com mais streams após os filtros acima. Atualiza os dois dashboards, incluindo KPIs, correlação, distribuição e ranking.",
+    )
+    st.caption("Limite desligado: todos os artistas dos filtros. Ligado: maiores volumes de streams, sem amostragem aleatória.")
 
-filtered = filter_data(df, selected_genres, selected_types, years)
-st.caption(f"{len(filtered)} de {len(df)} registros após os filtros compartilhados.")
+available = filter_data(df, selected_genres, selected_types, years)
+# [IA] Codex (OpenAI) – aplicação do limite compartilhado antes de construir os dois dashboards.
+filtered = top_artists(available, artist_limit) if use_artist_limit else available
+st.caption(f"{len(filtered)} artistas no recorte compartilhado; {len(available)} disponíveis após os filtros; {len(df)} na base.")
+if use_artist_limit:
+    st.caption(f"Recorte: até {artist_limit} artistas com mais streams. Os gráficos e KPIs usam esse conjunto; controles internos podem restringi-lo.")
+    if len(available) < artist_limit:
+        st.info(f"Os filtros deixaram apenas {len(available)} artistas disponíveis para o limite solicitado de {artist_limit}.")
 tab1, tab2 = st.tabs(["Dashboard 1 · Exploração", "Dashboard 2 · Indicadores"])
 
 with tab1:
     variables = st.multiselect("Variáveis quantitativas", NUMERIC, default=NUMERIC[:3], key="variables")
     distinguish = st.toggle("Distinguir por gênero", key="distinguish")
     method_label = st.selectbox("Método de correlação", ["Pearson", "Spearman"], key="method")
+    # [IA] Codex (OpenAI) – criação de sliders dinâmicos e aplicação conjunta dos intervalos numéricos.
     ranges = {}
     with st.expander("Intervalos das variáveis selecionadas"):
         for variable in variables:
@@ -70,6 +85,7 @@ with tab1:
                 if table.empty:
                     st.info("Correlação indefinida: valores constantes ou pares insuficientes.")
                 else:
+                    # [IA] Codex (OpenAI) – composição do heatmap Altair com coeficientes e contraste condicional.
                     base = alt.Chart(table).encode(x=alt.X("Variável X:N", title=None), y=alt.Y("Variável Y:N", title=None))
                     heat = base.mark_rect().encode(color=alt.Color("Correlação:Q", scale=alt.Scale(domain=[-1, 1], scheme="redblue")), tooltip=["Variável X:N", "Variável Y:N", alt.Tooltip("Correlação:Q", format=".3f")])
                     labels = base.mark_text().encode(text=alt.Text("Correlação:Q", format=".2f"), color=alt.condition("abs(datum['Correlação']) > 0.6", alt.value("white"), alt.value("black")))
@@ -78,11 +94,15 @@ with tab1:
         with right:
             st.subheader("Distribuição")
             variable = st.selectbox("Variável da distribuição", variables, key="distribution")
-            bins = st.slider("Número máximo de classes", 5, 60, 20, key="bins")
+            bins = st.slider(
+                "Número máximo de classes", 5, 60, 20, key="bins",
+                help="Classes são agrupamentos do histograma, não quantidade de artistas. Este controle altera somente a distribuição; o recorte de dados permanece igual.",
+            )
             data = explored.dropna(subset=[variable])
             if data.empty:
                 st.info("Não há valores válidos para esta distribuição.")
             else:
+                # [IA] Codex (OpenAI) – sintaxe do histograma Altair com classes ajustáveis e cor opcional por gênero.
                 histogram = alt.Chart(data).mark_bar(opacity=0.75).encode(x=alt.X(f"{variable}:Q", bin=alt.Bin(maxbins=bins)), y=alt.Y("count():Q", title="Artistas"), tooltip=[alt.Tooltip("count():Q", title="Artistas")])
                 if distinguish:
                     histogram = histogram.encode(color=alt.Color(f"{GENRE}:N", title="Gênero"))
@@ -92,7 +112,7 @@ with tab1:
 
 with tab2:
     st.subheader("Indicadores de audiência")
-    limit = st.slider("Artistas no ranking", 5, 20, 10, key="ranking_limit")
+    # [IA] Codex (OpenAI) – integração da seleção Altair com recálculo de KPIs e dados dos gráficos secundários.
     # O espaço é criado antes do gráfico, mas preenchido após ler o evento.
     metrics_slot = st.container()
     st.caption("Clique em um gênero para filtrar os KPIs e gráficos abaixo. Shift + clique combina gêneros; duplo clique limpa.")
@@ -106,6 +126,7 @@ with tab2:
             color=alt.value(ACCENT),
             tooltip=[GENRE, alt.Tooltip(f"sum({STREAMS}):Q", title="Streams (milhões)", format=",.1f")],
         ).add_params(click).properties(height=300)
+        # [IA] Codex (OpenAI) – chave derivada dos dados para reiniciar a seleção quando os filtros mudam.
         # Uma nova chave ao mudar a população evita seleções antigas invisíveis.
         population = pd.util.hash_pandas_object(filtered, index=True).sum()
         event = st.altair_chart(bars, key=f"genre_chart_{population}", on_select="rerun", width="stretch")
@@ -124,13 +145,15 @@ with tab2:
     else:
         left, right = st.columns(2)
         with left:
-            st.subheader(f"Top {limit} artistas por streams")
-            ranking = selected.dropna(subset=[STREAMS]).nlargest(limit, STREAMS)
+            st.subheader("Artistas do recorte por streams")
+            ranking = top_artists(selected.dropna(subset=[STREAMS]), len(selected))
             if ranking.empty:
                 st.info("Sem volumes válidos para o ranking.")
             else:
+                st.caption(f"{len(ranking)} artistas com volume válido. Role o ranking para ver todos.")
                 chart = alt.Chart(ranking).mark_bar(color=ACCENT).encode(x=alt.X(f"{STREAMS}:Q", title="Streams (milhões)"), y=alt.Y("Artist Name:N", sort="-x", title=None), tooltip=["Artist Name", GENRE, alt.Tooltip(f"{STREAMS}:Q", format=",.1f")])
-                st.altair_chart(chart.properties(height=400), width="stretch")
+                with st.container(height=460):
+                    st.altair_chart(chart.properties(height=max(360, 24 * len(ranking))), width="stretch")
         with right:
             st.subheader("Principal × participação")
             lead, feature = NUMERIC[1:3]
@@ -140,4 +163,4 @@ with tab2:
             else:
                 scatter = alt.Chart(points).mark_circle(size=65, opacity=0.7).encode(x=alt.X(f"{lead}:Q", title="Principal (milhões)"), y=alt.Y(f"{feature}:Q", title="Participação (milhões)"), color=alt.Color(f"{GENRE}:N", title="Gênero"), tooltip=["Artist Name", GENRE, alt.Tooltip(f"{lead}:Q", format=",.1f"), alt.Tooltip(f"{feature}:Q", format=",.1f")]).interactive()
                 st.altair_chart(scatter.properties(height=400), width="stretch")
-    st.caption("Volumes acumulados atribuídos aos artistas; a soma pode contar participações em duplicidade e não representa streams únicos da plataforma. Top 5 é calculado no recorte completo, independentemente do tamanho do ranking.")
+    st.caption("Volumes acumulados atribuídos aos artistas; a soma pode contar participações em duplicidade e não representa streams únicos da plataforma. Top 5 é calculado no recorte da sidebar e da seleção de gênero, incluindo o limite de artistas quando ativado.")

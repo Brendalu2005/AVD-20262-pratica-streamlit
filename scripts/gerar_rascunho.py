@@ -35,6 +35,7 @@ def render(number):
     draw.text((30, 65), "Revisão em 02/11/2026 para aprovação; documenta a implementação atual.", font=font(20), fill=TEXT)
     box((25, 115, 310, 1010), "Filtros compartilhados", [
         "Gêneros [multisseleção]", "Tipos [multisseleção]", "Ano de estreia [intervalo]", "",
+        "Limitar artistas [liga/desliga]", "Máximo de artistas [número]", "Até N maiores volumes", "Nos dois dashboards", "",
         "Categorias vazias:", "nenhum artista", "", "Ano = estreia do artista;", "não é data dos streams.",
     ])
     active1, active2 = ("[ativo]", "") if number == 1 else ("", "[ativo]")
@@ -56,7 +57,7 @@ def render(number):
         ])
         draw.text((340, 910), "Sem artistas no recorte: aviso para ampliar os filtros. Correlação não implica causalidade.", font=font(20), fill=TEXT)
     else:
-        box((335, 200, 1530, 275), "Artistas no ranking [slider de 5 a 20, nesta aba]")
+        box((335, 200, 1530, 275), "Recorte compartilhado: categorias + estreia + até N maiores volumes (limite opcional)")
         for i, title in enumerate(["Artistas", "Streams atribuídos", "Mediana / artista", "Top 5 (%)"]):
             x = 335 + i * 301
             box((x, 300, x + 287, 410), title, ["Valor do recorte"])
@@ -66,7 +67,7 @@ def render(number):
             "A seleção atualiza os quatro KPIs, o ranking e a dispersão.",
             "Sem seleção = todos os artistas dos filtros compartilhados.",
         ])
-        box((335, 690, 910, 915), "Top N artistas por streams", ["Barras em milhões", "Ordem do maior para o menor", "Top N não altera os KPIs."])
+        box((335, 690, 910, 915), "Artistas do recorte por streams", ["Barras em milhões; ordem decrescente", "Todo o recorte, sem limite separado", "Rolagem para ver todos os artistas"])
         box((935, 690, 1530, 915), "Principal × participação", ["Dispersão por artista e gênero", "Tooltip: artista e volumes em milhões", "Zoom e deslocamento interativos"])
         draw.text((340, 950), "Volumes acumulados atribuídos; a soma não mede streams únicos da plataforma.", font=font(20), fill=TEXT)
         draw.text((340, 985), "Recorte vazio: contagem 0, demais KPIs 'Sem dados' e aviso nos gráficos.", font=font(20), fill=TEXT)
