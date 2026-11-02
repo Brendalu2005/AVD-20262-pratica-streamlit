@@ -122,7 +122,7 @@ sem substituir o histórico por uma descrição de apoio apenas consultivo.
 
 - Revisão anterior aprovada; ajustes dos filtros solicitados e confirmados; atualização documental autorizada.
 - Marcações nos blocos complexos mantidas.
-- Alterações posteriores ao commit `24c19e0` ainda precisam de commit e push.
-- Conferência visual no navegador realizada e aprovada pela autoria, conforme confirmação nesta conversa em 02/11/2026. Deploy e teste do link público ainda não foram concluídos.
+- Versão preparada para deploy registrada em `788f1c9`; o título foi ajustado em `c0741e3` e o link público incluído em `072f07f`.
+- Conferência visual local realizada e aprovada pela autoria, conforme confirmação nesta conversa em 02/11/2026. Deploy informado como concluído pela autora; teste funcional completo do link público ainda não registrado.
 - Formulário PDF assinado ainda não entregue no repositório. Turma, e-mail, data de entrega, reflexão de 8 a 15 linhas e assinatura precisam ser conferidos ou completados pela autoria.
 - Nenhuma reflexão individual, assinatura ou declaração de compreensão do código foi produzida em nome da estudante.

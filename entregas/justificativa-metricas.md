@@ -1,6 +1,6 @@
 # Justificativa das métricas — Dashboard 2
 
-## Planejamento antes da implementação
+## Variáveis, métricas e widgets
 
 Público: estudantes e analistas de música interessados na distribuição da audiência. Fonte: `data/clean/dataset.csv`, uma fotografia de volumes acumulados por artista, sem série temporal de reproduções.
 

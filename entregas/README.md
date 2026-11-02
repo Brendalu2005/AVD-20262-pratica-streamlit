@@ -36,11 +36,16 @@ o Dashboard 2 reúne quatro KPIs, seleção por gênero, ranking e dispersão.
 O limite opcional de artistas fica na sidebar e afeta os dois dashboards.
 O ranking mostra todos os artistas com streams válidos desse recorte, com rolagem.
 
-- [x] Aprovação da revisão anterior e autorização dos ajustes documentais nesta conversa
-- [ ] Commit e push da versão aprovada
+- [x] Revisão do aplicativo aprovada pela autora
+- [x] Versão do aplicativo commitada e enviada ao GitHub
 - [x] Conferência visual e clique real nos gráficos no navegador — realizados e aprovados pela autoria em 02/11/2026
 - [ ] Declaração formal de IA preenchida e assinada
-- [ ] Deploy, link público e teste publicado — etapa posterior, fora desta revisão
+- [x] Deploy realizado e link incluído no README principal
+- [x] Evidência da aplicação publicada em `evidencia_app_publicado.jpg`
+- [ ] Teste funcional da URL pública em janela anônima registrado
+
+**Aplicação:** [Abrir o dashboard Spotify](https://brendalu2005-spotifystreamingperformance.streamlit.app/).
+O registro da publicação e o escopo das verificações estão em [validacao.md](validacao.md).
 
 ## Modelo de `justificativa-metricas.md`
 

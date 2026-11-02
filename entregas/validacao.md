@@ -19,27 +19,41 @@ Resultado em 02/11/2026: doze testes aprovados com unittest e Streamlit AppTest.
 
 O AppTest valida execução e widgets, mas não simula o gesto de clique no canvas do Vega no navegador. O encadeamento usa o padrão do guia local: seleção nomeada por campo, `on_select="rerun"`, payload aplicado no Python e gráficos secundários construídos com os dados selecionados. Os dois rascunhos revisados foram inspecionados visualmente.
 
-## Coerência antes do deploy
+## Coerência da implementação
 
 - Dashboard 1: sidebar compartilhada, controles na aba, correlação à esquerda e distribuição à direita; wireframe revisado corresponde à estrutura do código.
 - Dashboard 2: quatro KPIs, seleção por soma atribuída de gênero, ranking com rolagem e dispersão. O limite opcional de artistas fica na sidebar e é compartilhado pelas duas abas; fórmulas e unidades correspondem à justificativa.
 - Identidade: fundo escuro, destaque verde e fonte sem serifa; barras usam a cor do tema.
 - Dados: exportação manual local do Spotify executada nesta revisão; 500 artistas, 14 colunas, sem ausentes numéricos. Mantém os volumes originais, sem variáveis experimentais de carreira nem logs na fonte do app.
-- Comparação com o CSV do último commit: 500 linhas em ambas as versões e nenhuma diferença nas células das 14 colunas preservadas.
+- Comparação realizada durante a revisão da exportação: 500 linhas em ambas as versões e nenhuma diferença nas células das 14 colunas preservadas.
 - EDA original e notebook do professor preservados. Os rascunhos atuais são revisões posteriores à implementação, com essa condição declarada nos próprios arquivos.
 - Dependências do app e dos módulos `src/` constam em `requirements.txt` (Streamlit, Pandas e Altair; SciPy suporta Spearman).
-- CSV, tema e rascunhos são versionados. A revisão anterior foi aprovada e registrada no commit `24c19e0`; os ajustes posteriores de filtros, marcações e documentação ainda estão locais e precisam de commit e push.
+- CSV, tema e rascunhos são versionados. A versão preparada para publicação foi registrada no commit `788f1c9`, seguida pelo ajuste de título em `c0741e3` e inclusão do link em `072f07f`.
 
 ## Conferência visual concluída
 
-Em 02/11/2026, foi realizado todos os itens da conferência visual e tudo está funcionando corretamente:
+Em 02/11/2026, a autora realizou a conferência visual local e confirmou o funcionamento dos seguintes itens:
 
 1. As duas abas, textos, gráficos e tema escuro/verde.
 2. Seleção de gênero na aba 2, atualizando KPIs, ranking e dispersão.
 3. Shift + clique para combinar gêneros e duplo clique para limpar a seleção.
 4. Limpeza da seleção anterior ao mudar os filtros da sidebar.
-5. Limites de 27 artistas nos dois dashboards e rolagem do ranking.
+5. Limite de 27 artistas nos dois dashboards e rolagem do ranking.
 
 Resultado: conferência visual aprovada pela autoria. Esse registro corresponde
 ao teste manual informado pela estudante, separado dos doze testes automatizados
 aprovados na última execução registrada em 02/11/2026.
+
+## Publicação
+
+A autora informou a conclusão do deploy no Streamlit Community Cloud.
+
+- **URL:** [Dashboard Spotify](https://brendalu2005-spotifystreamingperformance.streamlit.app/).
+- **Entrada do projeto:** `app.py`, branch `main`.
+- **Evidência disponível:** [captura da aplicação publicada](evidencia_app_publicado.jpg).
+
+A captura mostra a interface publicada com tema escuro/verde, sidebar e abas.
+Ainda não foi registrado o teste funcional completo da versão publicada em
+janela anônima. Para concluir esse registro, verificar acesso sem login,
+carregamento das duas abas, filtros, limite de artistas, seleção vinculada e
+rolagem do ranking. A validação local não é apresentada como teste da URL pública.
