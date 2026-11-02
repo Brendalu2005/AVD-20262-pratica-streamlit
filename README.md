@@ -138,3 +138,8 @@ O uso de IA deve ser declarado conforme a seção abaixo.
 ## Pasta `prompts/`
 
 A pasta [prompts/](prompts/) guarda o template de prompt para transformar o rascunho de layout em esqueleto de código e a **Declaração de Uso de IA** exigida pelo Plano de Ensino. Veja [prompts/README.md](prompts/README.md).
+
+
+## Aplicação publicada
+
+[Acessar o dashboard Spotify](https://brendalu2005-spotifystreamingperformance.streamlit.app/)
