@@ -123,6 +123,6 @@ registro do apoio efetivamente recebido.
 - Aprovei a revisão anterior, solicitei e confirmei os ajustes dos filtros e autorizei a atualização dos registros.
 - Mantive as marcações nos blocos complexos.
 - Versão preparada para deploy registrada em `788f1c9`; o título foi ajustado em `c0741e3` e o link público incluído em `072f07f`.
-- Realizei a conferência visual local em 02/11/2026 e concluí o deploy. Ainda preciso registrar o teste funcional completo do link público.
+- Realizei a conferência visual local, concluí o deploy e testei a URL pública em janela anônima em 02/11/2026. Confirmei acesso sem login e funcionamento das abas, filtros, limite de artistas, seleção vinculada e rolagem do ranking.
 - Ainda preciso entregar o formulário PDF assinado e conferir ou preencher turma, e-mail, data de entrega e minha reflexão de 8 a 15 linhas.
 - Minha reflexão individual, assinatura e declaração de compreensão do código precisam ser preenchidas por mim.

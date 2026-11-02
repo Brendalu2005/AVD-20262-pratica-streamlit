@@ -123,9 +123,10 @@ Incluí o link da aplicação no início deste README.
 - [Registro de validação](entregas/validacao.md).
 - [Registro de uso de IA](prompts/declaracao-uso-ia.md).
 
-Ainda preciso registrar o teste da URL pública em janela anônima, sem login,
-com as duas abas, os filtros e a seleção gráfica. A captura publicada não
-substitui essa conferência funcional.
+Em 02/11/2026, testei a URL pública em janela anônima e confirmei o acesso
+sem login, o carregamento das duas abas, os filtros, o limite de artistas,
+a seleção gráfica vinculada e a rolagem do ranking. Todos os itens funcionaram
+corretamente, conforme o [registro de validação](entregas/validacao.md).
 
 Ainda preciso entregar a declaração formal de uso de IA preenchida e assinada,
 conforme [prompts/README.md](prompts/README.md).

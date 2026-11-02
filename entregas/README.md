@@ -44,7 +44,7 @@ O ranking mostra todos os artistas com streams válidos desse recorte, com rolag
 - [ ] Declaração formal de IA preenchida e assinada
 - [x] Publiquei o app e incluí o link no README principal
 - [x] Incluí a evidência da publicação em `evidencia_app_publicado.jpg`
-- [ ] Teste funcional da URL pública em janela anônima registrado
+- [x] Testei a URL pública em janela anônima e confirmei o funcionamento de todos os itens em 02/11/2026
 
 **Aplicação:** [Abrir o dashboard Spotify](https://brendalu2005-spotifystreamingperformance.streamlit.app/).
 O registro da publicação e o escopo das verificações estão em [validacao.md](validacao.md).

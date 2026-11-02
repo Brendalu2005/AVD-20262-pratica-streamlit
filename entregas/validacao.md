@@ -56,7 +56,18 @@ Concluí o deploy no Streamlit Community Cloud.
 - **Evidência disponível:** [captura da aplicação publicada](evidencia_app_publicado.jpg).
 
 Incluí a captura da interface publicada com tema escuro/verde, sidebar e abas.
-Ainda preciso registrar o teste funcional completo da versão publicada em
-janela anônima: acesso sem login, carregamento das duas abas, filtros, limite
-de artistas, seleção vinculada e rolagem do ranking. Não apresento a validação
-local como teste da URL pública.
+
+### Teste da aplicação publicada — concluído em 02/11/2026
+
+Testei a URL pública em janela anônima e confirmei:
+
+- [x] Acesso sem login.
+- [x] Carregamento das duas abas.
+- [x] Funcionamento dos filtros e do limite de artistas.
+- [x] Seleção de gênero atualizando KPIs, ranking e dispersão.
+- [x] Rolagem do ranking.
+- [x] Link da aplicação disponível no README.
+
+Todos os itens funcionaram corretamente. Este resultado registra a conferência
+manual que realizei na versão publicada, confirmada nesta conversa, separadamente
+dos testes automatizados e da conferência visual local.
