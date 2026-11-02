@@ -7,7 +7,13 @@ Público: estudantes e analistas de música interessados na distribuição da au
 1. Variáveis: `Artist Name`, `Total Streams (in millions)`, `Primary Genre`, `Artist Type` e `Debut Year`. Streams são expressos em milhões.
 2. Métricas: contagem de artistas, soma de streams atribuídos, mediana por artista e participação do Top 5 no recorte.
 3. Widgets: multisseleção de gêneros e tipos, intervalo de estreia e tamanho do ranking (5–20). Categorias vazias significam nenhum artista. O ano filtra a estreia, não a data das reproduções. Clique em uma barra de gênero restringe KPIs, ranking e dispersão; Shift permite múltiplos gêneros e duplo clique limpa a seleção.
-4. Layout: sidebar compartilhada; duas abas; no Dashboard 2, quatro KPIs, barras de gênero para seleção e ranking/dispersão abaixo. `rascunho-dashboard2.png` registra o planejamento antes do código do dashboard.
+4. Layout: sidebar compartilhada; duas abas; no Dashboard 2, tamanho do ranking na própria aba, quatro KPIs, barras de gênero para seleção e ranking/dispersão abaixo. O wireframe original foi revisado em 02/11/2026; `rascunho-dashboard2.png` documenta agora essa revisão para aprovação, com o tema escuro/verde do app.
+
+Preparação: `notebooks/eda-com-downloads.ipynb` lê o CSV local do Spotify e
+exporta as colunas da fonte para `data/clean/dataset.csv`. Os volumes usados
+nos KPIs são mantidos na escala original, sem log nem capping. Colunas
+experimentais da EDA, como `anos_carreira` com referência 2010 e
+`streams_por_ano`, não entram no CSV de consumo do app. A EDA original é preservada.
 
 ## Artistas no recorte
 

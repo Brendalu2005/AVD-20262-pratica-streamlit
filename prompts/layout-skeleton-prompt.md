@@ -1,81 +1,43 @@
-# Template: rascunho de layout → esqueleto do app
+# Rascunhos → estrutura do app — versão revisada
 
-Preencha cada bloco e envie à ferramenta de IA.
+Esta versão foi alinhada à revisão de 02/11/2026. Não é transcrição do prompt
+original: o histórico de uso está em `declaracao-uso-ia.md`.
 
 ## Contexto
 
-<!-- Sou estudante de Ciência da Computação e estou desenvolvendo um dashboard interativo com Streamlit para analisar dados de streaming musical do Spotify. O objetivo é explorar o desempenho de artistas, comparar gêneros musicais e identificar padrões entre streams como artista principal e como participação em faixas. O dashboard deve facilitar a interpretação dos dados por meio de filtros, indicadores e visualizações interativas. -->
+Sou estudante de Análise e Visualização de Dados. Quero explorar a audiência
+acumulada dos artistas do dataset Spotify, com duas abas conforme `ROTEIRO.md`.
 
 ## Entrada
 
-<!-- Utilize a imagem de rascunho anexada como referência visual para a estrutura da interface. A imagem representa a organização desejada para o dashboard .
+Anexe `entregas/rascunho-dashboard1.png` e `entregas/rascunho-dashboard2.png`.
+Carregue `data/clean/dataset.csv` por `src/data_loader.py`.
 
-Imagem de referência: prompts\prof_rascunho_dashboard1.png. 
+Colunas: `Artist Name`, `Primary Genre`, `Artist Type`, `Debut Year`,
+`Total Streams (in millions)`, `Lead Streams (in millions)`,
+`Feature Streams (in millions)`, `Solo Streams (in millions)` e
+`Collaborative Streams (in millions)`.
 
-Colunas relevantes do dataset:
-
-- `Artist Name`: nome do artista.
-- `Total Streams (in millions)`: total de streams, em milhões.
-- `Lead Streams (in millions)`: streams como artista principal, em milhões.
-- `Feature Streams (in millions)`: streams como participação em faixas, em milhões.
-- `Primary Genre`: gênero musical principal.
-- `Artist Type`: tipo de artista.
-- `Debut Year`: ano de estreia.
-- `anos_carreira`: anos de carreira, caso disponível.
-
-Perguntas que o dashboard deve responder:
-
-- Quais artistas possuem o maior número de streams?
-- Qual é a quantidade de artistas e o total de streams no recorte selecionado?
-- Qual artista apresenta a maior audiência em streams?
-- Quais gêneros musicais possuem a maior média de streams por artista?
-- Existe alguma relação entre os streams como artista principal e os streams como participação?
-
-Descrição do layout desejado:
-
-1. **Sidebar à esquerda:** filtros de gênero musical, tipo de artista, intervalo de ano de estreia e quantidade de artistas exibidos no ranking.
-2. **Cabeçalho:** título "Spotify Streaming Performance" e uma breve descrição do dashboard.
-3. **Indicadores no topo:** três cartões com a quantidade de artistas no recorte, o total de streams e o artista com maior audiência.
-4. **Área central:** dois gráficos de barras lado a lado, um com o ranking dos artistas por streams e outro com a média de streams por gênero.
-5. **Área inferior:** gráfico de dispersão comparando os streams como artista principal e como participação em faixas.
--->
+- Sidebar: gêneros e tipos por multisseleção; intervalo do ano de estreia.
+- Dashboard 1: seleção de variáveis, intervalos numéricos, Pearson/Spearman,
+  heatmap de correlação e histograma com escolha de variável/classes e cor por gênero.
+- Dashboard 2: slider do tamanho do ranking na aba, contagem de artistas,
+  soma atribuída, mediana de streams e participação do Top 5; barras de gênero
+  com seleção vinculada aos KPIs, ranking e dispersão principal × participação.
 
 ## Restrições
 
-<!-- Utilizar Python, Streamlit, Pandas e Plotly.
-
-Manter o carregamento dos dados por meio da função load_data() do módulo src/data_loader.py.
-
-Implementar os filtros na sidebar e aplicá-los antes de calcular os indicadores e construir os gráficos.
-
-Utilizar os nomes das colunas existentes no dataset, sem inventar dados ou assumir colunas que não estejam disponíveis.
-
-Preservar a lógica de tratamento numérico das colunas necessárias às análises.
-
-Criar gráficos interativos com Plotly, incluindo informações adicionais nos detalhes exibidos ao passar o cursor sobre os elementos.
-
-Utilizar uma identidade visual inspirada no rascunho: fundo claro, tons de laranja, textos em cinza-escuro e cartões com bordas arredondadas.
-
-Organizar o layout de forma responsiva, aproveitando a largura disponível na página.
-
-Não substituir o carregamento de dados por dados fictícios.
-
-Não alterar desnecessariamente outros arquivos do projeto, especialmente src/data_loader.py.
-
-Não adicionar gráficos ou funcionalidades que não tenham sido solicitados sem justificar sua necessidade. -->
+Use Streamlit, Pandas e Altair, com `st.tabs`, `st.metric` e `st.cache_data`.
+Preserve o tema escuro/verde de `.streamlit/config.toml`; use componentes nativos.
+Não invente colunas nem dados. O ano é de estreia, não período de reproduções.
+A soma de volumes atribuídos não representa streams únicos da plataforma.
+Os intervalos numéricos da aba 1 não devem restringir a aba 2.
+Trate seleção vazia, apenas uma variável, recorte vazio e correlação indefinida.
+Siga `ALTAIR-CROSSFILTER.md` para a seleção gráfica da aba 2.
 
 ## Formato de saída
 
-<!-- Gere o código completo e funcional do arquivo app.py, pronto para ser integrado ao projeto existente.
-
-Organize o código em seções claras:
-- Configuração da página e cabeçalho.
-- Carregamento e preparação dos dados.
-- Configuração dos filtros.
-- Aplicação dos filtros.
-- Cálculo dos indicadores.
-- Construção dos gráficos.
-- Organização final do layout.
-- Utilize comentários curtos para identificar as seções principais. Não implemente funcionalidades fictícias nem deixe partes essenciais como # TODO.
-
-- Antes de apresentar o código, verifique se os nomes das colunas utilizados correspondem aos informados, se os filtros afetam todos os indicadores e gráficos e se o código é compatível com Streamlit e Plotly. Caso alguma coluna necessária não esteja disponível, informe a limitação em vez de inventar informações. -->
+Código funcional de `app.py`, preservando os módulos `src/`, com eventuais
+alterações justificadas. Documente fórmulas e limites em
+`entregas/justificativa-metricas.md` e valide com os testes existentes.
+Apresente a versão para aprovação antes de commit/push; não faça deploy.

@@ -83,15 +83,23 @@ os intervalos numéricos do Dashboard 1 se aplicam somente à exploração.
 O CSV contém volumes acumulados por artista, sem série temporal. Streams são
 expressos em milhões; a soma dos volumes atribuídos não mede streams únicos.
 Consulte [justificativa das métricas](entregas/justificativa-metricas.md),
+[rascunho do Dashboard 1](entregas/rascunho-dashboard1.png),
 [rascunho do Dashboard 2](entregas/rascunho-dashboard2.png) e
 [guia de seleção](ALTAIR-CROSSFILTER.md).
 
 Validação: `python -m unittest discover -s tests -v`.
-Para recriar o wireframe: `python scripts/gerar_rascunho.py`.
+Para recriar os dois wireframes revisados: `python scripts/gerar_rascunho.py`.
+As imagens de 02/11/2026 são revisões posteriores à implementação, para aprovação.
+A proposta visual inicial foi preservada em `entregas/proposta-inicial-spotify.png`.
 
-1. Substitua `notebooks/eda.ipynb` pelo seu notebook de EDA (Aula 11) e exporte o dado tratado para `data/clean/`.
-2. Construa o `app.py` em cima do esqueleto (sidebar, filtros, Dashboard 1 e Dashboard 2).
-3. Faça o deploy no Streamlit Community Cloud (Aula 23).
+1. `notebooks/eda.ipynb` contém a EDA pessoal preservada; `arquivo-eda-original.ipynb` mantém o exemplo do professor.
+2. Para preparar os dados, coloque o CSV original `Spotify Streaming Performance Dataset.csv` em `data/raw/` e execute todas as células de `notebooks/eda-com-downloads.ipynb`. O download manual é a alternativa adotada conforme o roteiro.
+3. O notebook exporta `data/clean/dataset.csv` com as colunas da fonte, nomes normalizados e validações, mantendo os volumes originais. Colunas experimentais/logs da EDA não são necessárias ao app.
+4. Execute os testes e `streamlit run app.py` para revisar as duas abas.
+
+**Estado em 02/11/2026:** revisão local anterior ao deploy, aguardando aprovação
+da autoria. Commit/push e publicação serão feitos em uma etapa posterior.
+O link público e os testes da versão publicada ainda estão pendentes.
 
 ## IA neste projeto
 

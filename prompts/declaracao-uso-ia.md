@@ -1,7 +1,7 @@
 # Declaração de Uso de IA
 
-**Nome:** não informado nesta conversa; preencher com o nome da autoria acadêmica.
-**Data:** 27/10/2026
+**Nome:** Brenda Luana Correia Bezerra
+**Datas:** 27/10/2026 e 02/11/2026
 
 ## Ferramenta
 
@@ -45,3 +45,27 @@ A IA leu o guia adicionado e adaptou o exemplo de seleção por clique para `Pri
 - **Modificado pela IA no esqueleto:** colunas de doenças cardíacas substituídas pelas colunas reais do Spotify. `app_spotify.py` passou a abrir a mesma implementação de `app.py`, evitando dois apps divergentes.
 - **Escolhas técnicas:** KPIs de volume, tendência central e concentração; seleção de gênero com `on_select="rerun"`; ano de estreia não apresentado como período de streams.
 - **Rejeitado pelo usuário:** nenhuma rejeição explicitada nesta conversa.
+
+## Conversas de 02/11/2026 — conferência e revisão antes do deploy
+
+> com base no arquivo ROTEIRO.md veja oque está faltando no meu projeto
+
+> antes de ir para a etapa de deploy, verifique se está tudo coerente, dashboard e rascunhos, e realize as implementações que faltam de acordo com o solicitado MENOS a etapa de deploy, e me mande antes para eu aprovar
+
+A IA comparou o roteiro, código, dados, notebooks e as duas imagens. A imagem
+inicialmente chamada Dashboard 1 representava KPIs/ranking; foi preservada como
+`entregas/proposta-inicial-spotify.png`. Os wireframes foram revisados para
+representar correlação/distribuição na aba 1 e KPIs/seleção/ranking/dispersão
+na aba 2. Essas imagens revisadas foram feitas após a implementação e não
+comprovam planejamento anterior. O tema escuro/verde já existente foi mantido,
+e a cor dos gráficos foi alinhada a ele.
+
+O notebook de exportação foi adaptado ao Spotify com leitura manual do CSV
+bruto e exportação das colunas usadas como fonte, preservando os volumes
+originais e a EDA original. Foram acrescentadas validações do esquema e de
+uma linha por artista para impedir que um CSV incompatível produza KPIs
+incorretos. A documentação e os testes foram atualizados.
+
+**Situação de aceite:** alterações preparadas para revisão de Brenda Luana
+Correia Bezerra; aprovação ainda pendente. Não houve deploy, commit nem push
+nesta revisão. Não há rejeição registrada das escolhas propostas.

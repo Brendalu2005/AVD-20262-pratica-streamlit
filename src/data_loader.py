@@ -3,6 +3,8 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+from src.analytics import GENRE, TYPE, NUMERIC
+
 
 @st.cache_data(ttl=3600, max_entries=4)
 def load_data(path="data/clean/dataset.csv"):
@@ -11,6 +13,12 @@ def load_data(path="data/clean/dataset.csv"):
     if not source.is_absolute():
         source = Path(__file__).resolve().parents[1] / source
     df = pd.read_csv(source)
+    required = {"Artist Name", GENRE, TYPE, *NUMERIC}
+    missing = required.difference(df.columns)
+    if missing:
+        raise ValueError("Colunas obrigatórias ausentes: " + ", ".join(sorted(missing)))
+    if df["Artist Name"].isna().any() or df["Artist Name"].duplicated().any():
+        raise ValueError("O CSV deve conter uma linha por artista, com nomes preenchidos e únicos.")
     for column in df.columns:
         if "Streams" in column or column == "Debut Year":
             values = pd.to_numeric(df[column], errors="coerce")

@@ -7,11 +7,12 @@ from src.analytics import (GENRE, TYPE, YEAR, NUMERIC, STREAMS, calculate_kpis,
 from src.data_loader import load_data
 
 st.set_page_config(page_title="Spotify | Audiência em foco", page_icon=":material/music_note:", layout="wide")
+ACCENT = st.get_option("theme.primaryColor") or "#1DB954"
 st.title("Spotify — audiência em foco")
 st.caption("Explore relações entre variáveis e compare a audiência acumulada dos artistas.")
 try:
     df = load_data()
-except (FileNotFoundError, KeyError, pd.errors.EmptyDataError) as error:
+except (FileNotFoundError, KeyError, ValueError, pd.errors.EmptyDataError) as error:
     st.error(f"Não foi possível carregar o CSV tratado do Spotify: {error}")
     st.stop()
 
@@ -86,7 +87,7 @@ with tab1:
                 if distinguish:
                     histogram = histogram.encode(color=alt.Color(f"{GENRE}:N", title="Gênero"))
                 else:
-                    histogram = histogram.encode(color=alt.value("#C65318"))
+                    histogram = histogram.encode(color=alt.value(ACCENT))
                 st.altair_chart(histogram.properties(height=360), width="stretch")
 
 with tab2:
@@ -102,7 +103,7 @@ with tab2:
             x=alt.X(f"sum({STREAMS}):Q", title="Streams atribuídos (milhões)"),
             y=alt.Y(f"{GENRE}:N", sort="-x", title="Gênero"),
             opacity=alt.condition(click, alt.value(1), alt.value(0.3)),
-            color=alt.value("#C65318"),
+            color=alt.value(ACCENT),
             tooltip=[GENRE, alt.Tooltip(f"sum({STREAMS}):Q", title="Streams (milhões)", format=",.1f")],
         ).add_params(click).properties(height=300)
         # Uma nova chave ao mudar a população evita seleções antigas invisíveis.
@@ -128,7 +129,7 @@ with tab2:
             if ranking.empty:
                 st.info("Sem volumes válidos para o ranking.")
             else:
-                chart = alt.Chart(ranking).mark_bar(color="#C65318").encode(x=alt.X(f"{STREAMS}:Q", title="Streams (milhões)"), y=alt.Y("Artist Name:N", sort="-x", title=None), tooltip=["Artist Name", GENRE, alt.Tooltip(f"{STREAMS}:Q", format=",.1f")])
+                chart = alt.Chart(ranking).mark_bar(color=ACCENT).encode(x=alt.X(f"{STREAMS}:Q", title="Streams (milhões)"), y=alt.Y("Artist Name:N", sort="-x", title=None), tooltip=["Artist Name", GENRE, alt.Tooltip(f"{STREAMS}:Q", format=",.1f")])
                 st.altair_chart(chart.properties(height=400), width="stretch")
         with right:
             st.subheader("Principal × participação")

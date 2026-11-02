@@ -1,12 +1,3 @@
-# Tema antigo
-# [theme]
-# base = "light"
-# primaryColor = "#C65318"
-# backgroundColor = "#FFF9F2"
-# secondaryBackgroundColor = "#F3E7D9"
-# textColor = "#34281F"
-# font = "sans serif"
-
 # Tema Spotify dark
 [theme]
 base = "dark"

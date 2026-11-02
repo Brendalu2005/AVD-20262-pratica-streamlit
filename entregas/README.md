@@ -10,7 +10,7 @@ Artefatos de entrega que não são sobre uso de IA (isso fica em [`prompts/`](..
 
 ## Checklist — Aula 21
 
-- [ ] `rascunho-dashboard1.jpg`/`.png`
+- [x] `rascunho-dashboard1.png` — revisão para correlação e distribuição
 
 ## Checklist — Aula 22
 
@@ -19,8 +19,25 @@ Artefatos de entrega que não são sobre uso de IA (isso fica em [`prompts/`](..
 
 ## Checklist — entrega final (Aula 23)
 
-- [ ] Os dois rascunhos
-- [ ] `justificativa-metricas.md` completo
+- [x] Os dois rascunhos
+- [x] `justificativa-metricas.md` completo
+
+## Revisão para aprovação — 02/11/2026
+
+Os dois `rascunho-dashboard*.png` foram revisados nesta data para corresponder
+às abas atuais e ao tema escuro/verde. São revisões posteriores à implementação,
+não evidência de planejamento anterior. A imagem inicialmente chamada
+`rascunho-dashboard1.png` foi preservada em `proposta-inicial-spotify.png`:
+ela representa uma proposta de KPIs e ranking, e não a exploração quantitativa
+exigida para o Dashboard 1. O wireframe do Dashboard 2 já existia antes desta revisão.
+
+O Dashboard 1 reúne correlação, distribuição e controles de exploração;
+o Dashboard 2 reúne quatro KPIs, seleção por gênero, ranking e dispersão.
+O controle do tamanho do ranking fica dentro da aba 2, como no app.
+
+- [ ] Aprovação da autoria sobre esta revisão
+- [ ] Commit e push da versão aprovada
+- [ ] Deploy, link público e teste publicado — etapa posterior, fora desta revisão
 
 ## Modelo de `justificativa-metricas.md`
 

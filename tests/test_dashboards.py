@@ -1,7 +1,10 @@
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
 import pandas as pd
+import streamlit as st
 from streamlit.testing.v1 import AppTest
 
 from src.analytics import (GENRE, TYPE, YEAR, STREAMS, NUMERIC, calculate_kpis,
@@ -92,6 +95,47 @@ class DashboardTests(unittest.TestCase):
         at = AppTest.from_file(str(ROOT / "app_spotify.py"), default_timeout=30).run()
         self.assertFalse(at.exception)
         self.assertEqual(len(at.tabs), 2)
+
+    def test_chart_selection_updates_dashboard_metrics(self):
+        original = st.altair_chart
+        secondary_data = []
+        selection_applied = False
+
+        def with_selection(*args, **kwargs):
+            nonlocal selection_applied
+            result = original(*args, **kwargs)
+            if kwargs.get("on_select") == "rerun":
+                selection_applied = True
+                return SimpleNamespace(selection={"genre_click": [{GENRE: "Pop"}]})
+            if selection_applied:
+                secondary_data.append(args[0].data)
+            return result
+
+        with patch("streamlit.altair_chart", side_effect=with_selection):
+            at = self.app()
+        expected = calculate_kpis(load_data().loc[lambda df: df[GENRE].eq("Pop")])
+        self.assertEqual(at.metric[0].value, str(expected["artists"]))
+        self.assertEqual(at.metric[1].value, f"{expected['total']:,.1f} mi")
+        self.assertEqual(at.metric[2].value, f"{expected['median']:,.1f} mi")
+        self.assertEqual(at.metric[3].value, f"{expected['top5']:,.1f}%")
+        self.assertEqual(len(secondary_data), 2)
+        for data in secondary_data:
+            self.assertTrue(data[GENRE].eq("Pop").all())
+
+    def test_numeric_filters_do_not_change_dashboard2(self):
+        at = self.app()
+        before = [metric.value for metric in at.metric]
+        df = load_data()
+        value = float(df[STREAMS].min())
+        at.slider(key=f"range_{STREAMS}").set_value((value, value)).run()
+        self.assertFalse(at.exception)
+        self.assertEqual([metric.value for metric in at.metric], before)
+
+    def test_incompatible_csv_shows_friendly_error(self):
+        with patch("src.data_loader.load_data", side_effect=ValueError("Colunas obrigatórias ausentes")):
+            at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=30).run()
+        self.assertFalse(at.exception)
+        self.assertTrue(any("Colunas obrigatórias" in error.value for error in at.error))
 
 
 if __name__ == "__main__":
