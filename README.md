@@ -1,7 +1,7 @@
 # Spotify — análise de artistas e streams | AVD 2026.2
 
-Projeto individual de **Brenda Luana Correia Bezerra**, desenvolvido na disciplina
-Análise e Visualização de Dados da CESAR School a partir do
+Sou **Brenda Luana Correia Bezerra** e desenvolvi este projeto individual na
+disciplina Análise e Visualização de Dados da CESAR School a partir do
 [repositório-modelo da disciplina](https://github.com/mfal-school/AVD-20262-pratica-streamlit).
 
 **Aplicação publicada:** [Abrir o dashboard Spotify](https://brendalu2005-spotifystreamingperformance.streamlit.app/)
@@ -11,12 +11,12 @@ Análise e Visualização de Dados da CESAR School a partir do
 ## Preparação inicial
 
 - Tema da EDA: **Spotify Streaming Performance Dataset**, com informações de artistas e volumes acumulados de streams.
-- [EDA pessoal](notebooks/eda.ipynb): notebook preservado como referência da análise original.
-- O notebook da professora permanece em `notebooks/arquivo-eda-original.ipynb`.
+- [Minha EDA](notebooks/eda.ipynb): mantive o notebook como referência da análise original.
+- Mantive o notebook da professora em `notebooks/arquivo-eda-original.ipynb` para consulta.
 - Aula 21: preparação e exportação dos dados, estrutura do app, seletor de variáveis e sliders de intervalo.
 - Aula 22: dois dashboards com Altair, filtros compartilhados, indicadores e seleção gráfica vinculada.
 - Aula 23: ajustes finais e publicação no Streamlit Community Cloud.
-- Os [rascunhos atuais](entregas/README.md) representam revisões posteriores à implementação; a proposta visual inicial foi preservada.
+- Apresento os [rascunhos atuais](entregas/README.md) como revisões posteriores à implementação e mantenho a proposta visual inicial para consulta.
 
 ## Entrega da Aula 21
 
@@ -102,8 +102,8 @@ verificam cálculos conhecidos dos KPIs, filtros, seleção de zero/uma/múltipl
 variáveis, correlação, recortes vazios, limites de 50 e 100 artistas,
 integração do evento de seleção, validação do CSV e exportação do notebook.
 
-A conferência visual local foi realizada e aprovada pela autora em 02/11/2026.
-O registro está em [entregas/validacao.md](entregas/validacao.md). Os testes
+Realizei a conferência visual local em 02/11/2026 e confirmei o funcionamento
+dos itens registrados em [entregas/validacao.md](entregas/validacao.md). Os testes
 locais são separados da conferência da aplicação publicada.
 
 Para recriar os dois wireframes revisados:
@@ -114,21 +114,21 @@ python scripts/gerar_rascunho.py
 
 ## Entrega da Aula 23
 
-A autora informou a publicação no Streamlit Community Cloud. O projeto utiliza
-a branch `main` e o arquivo principal `app.py`; o CSV tratado e o tema estão
-versionados. O link da aplicação aparece no início deste README.
+Publiquei o app no Streamlit Community Cloud, utilizando a branch `main` e o
+arquivo principal `app.py`. Mantenho o CSV tratado e o tema versionados.
+Incluí o link da aplicação no início deste README.
 
 - [Evidência da aplicação publicada](entregas/evidencia_app_publicado.jpg).
 - [Checklist das entregas](entregas/README.md).
 - [Registro de validação](entregas/validacao.md).
 - [Registro de uso de IA](prompts/declaracao-uso-ia.md).
 
-Ainda deve ser registrado o teste da URL pública em janela anônima, sem login,
+Ainda preciso registrar o teste da URL pública em janela anônima, sem login,
 com as duas abas, os filtros e a seleção gráfica. A captura publicada não
 substitui essa conferência funcional.
 
-A declaração formal de uso de IA preenchida e assinada permanece como
-pendência de entrega, conforme [prompts/README.md](prompts/README.md).
+Ainda preciso entregar a declaração formal de uso de IA preenchida e assinada,
+conforme [prompts/README.md](prompts/README.md).
 
 ### Dependências
 
@@ -145,8 +145,9 @@ O CSV bruto é necessário somente para reproduzir a preparação dos dados.
 
 ### Registro de autoria e revisão
 
-O projeto é individual. Os usos de IA e da skill oficial do Streamlit estão
-registrados em [prompts/declaracao-uso-ia.md](prompts/declaracao-uso-ia.md).
+Desenvolvi este projeto individualmente, com o apoio registrado em
+[prompts/declaracao-uso-ia.md](prompts/declaracao-uso-ia.md), incluindo o uso
+da skill oficial do Streamlit.
 Os comentários `[IA]` identificam os blocos complexos assinalados no código.
 O registro em Markdown auxilia o preenchimento da declaração formal e não
 substitui a reflexão individual nem a assinatura.

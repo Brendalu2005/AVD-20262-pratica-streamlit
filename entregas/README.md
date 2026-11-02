@@ -1,6 +1,8 @@
 # entregas/
 
-Artefatos de entrega que não são sobre uso de IA (isso fica em [`prompts/`](../prompts)). Cada arquivo tem uma função específica na correção. Os rascunhos aceitam `.jpg` ou `.png`. Tudo desta pasta, incluindo as entregas do Dashboard 2 (rascunho + justificativa), deve estar pronto até a Aula 22; a Aula 23 é para finalizar a implementação, fazer o deploy e os ajustes finais.
+Reuni nesta pasta os artefatos das entregas: rascunhos, justificativa das métricas,
+validação e evidência da publicação. Mantenho os registros de uso de IA em
+[`prompts/`](../prompts). Organizo os arquivos por aula, conforme o roteiro.
 
 | Arquivo                      | Quando    | O que é                                                                                      |
 |-------------------------------|-----------|-----------------------------------------------------------------------------------------------|
@@ -24,24 +26,24 @@ Artefatos de entrega que não são sobre uso de IA (isso fica em [`prompts/`](..
 
 ## Histórico da revisão — 02/11/2026
 
-Os dois `rascunho-dashboard*.png` foram revisados nesta data para corresponder
-às abas atuais e ao tema escuro/verde. São revisões posteriores à implementação,
-não evidência de planejamento anterior. A imagem inicialmente chamada
-`rascunho-dashboard1.png` foi preservada em `proposta-inicial-spotify.png`:
-ela representa uma proposta de KPIs e ranking, e não a exploração quantitativa
-exigida para o Dashboard 1. O wireframe do Dashboard 2 já existia antes desta revisão.
+Apresento os dois `rascunho-dashboard*.png` como revisões de 02/11/2026,
+correspondentes às abas atuais e ao tema escuro/verde. Não os apresento como
+evidência de planejamento anterior à implementação. Mantenho a imagem
+inicialmente chamada `rascunho-dashboard1.png` em `proposta-inicial-spotify.png`:
+ela representa a proposta inicial de KPIs e ranking. O wireframe do Dashboard 2
+já existia antes desta revisão.
 
 O Dashboard 1 reúne correlação, distribuição e controles de exploração;
 o Dashboard 2 reúne quatro KPIs, seleção por gênero, ranking e dispersão.
 O limite opcional de artistas fica na sidebar e afeta os dois dashboards.
 O ranking mostra todos os artistas com streams válidos desse recorte, com rolagem.
 
-- [x] Revisão do aplicativo aprovada pela autora
-- [x] Versão do aplicativo commitada e enviada ao GitHub
-- [x] Conferência visual e clique real nos gráficos no navegador — realizados e aprovados pela autoria em 02/11/2026
+- [x] Aprovei a revisão do aplicativo
+- [x] Fiz commit e push da versão do aplicativo
+- [x] Realizei a conferência visual e os cliques nos gráficos no navegador em 02/11/2026
 - [ ] Declaração formal de IA preenchida e assinada
-- [x] Deploy realizado e link incluído no README principal
-- [x] Evidência da aplicação publicada em `evidencia_app_publicado.jpg`
+- [x] Publiquei o app e incluí o link no README principal
+- [x] Incluí a evidência da publicação em `evidencia_app_publicado.jpg`
 - [ ] Teste funcional da URL pública em janela anônima registrado
 
 **Aplicação:** [Abrir o dashboard Spotify](https://brendalu2005-spotifystreamingperformance.streamlit.app/).

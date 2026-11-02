@@ -2,7 +2,10 @@
 
 ## Variáveis, métricas e widgets
 
-Público: estudantes e analistas de música interessados na distribuição da audiência. Fonte: `data/clean/dataset.csv`, uma fotografia de volumes acumulados por artista, sem série temporal de reproduções.
+Neste relatório, apresento os indicadores para estudantes e analistas de música
+interessados na distribuição da audiência. Uso `data/clean/dataset.csv` como
+fonte: uma fotografia dos volumes acumulados por artista, sem série temporal
+de reproduções.
 
 1. Variáveis: `Artist Name`, `Total Streams (in millions)`, `Primary Genre`, `Artist Type` e `Debut Year`. Streams são expressos em milhões.
 2. Métricas: contagem de artistas, soma de streams atribuídos, mediana por artista e participação do Top 5 no recorte.
@@ -13,7 +16,7 @@ Preparação: `notebooks/eda-com-downloads.ipynb` lê o CSV local do Spotify e
 exporta as colunas da fonte para `data/clean/dataset.csv`. Os volumes usados
 nos KPIs são mantidos na escala original, sem log nem capping. Colunas
 experimentais da EDA, como `anos_carreira` com referência 2010 e
-`streams_por_ano`, não entram no CSV de consumo do app. A EDA original é preservada.
+`streams_por_ano`, não entram no CSV de consumo do app. Mantenho minha EDA original como referência.
 
 ## Artistas no recorte
 

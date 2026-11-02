@@ -1,5 +1,8 @@
 # Validação dos dashboards
 
+Registro aqui os resultados dos testes automatizados executados com apoio do
+Codex e a conferência visual que realizei no navegador.
+
 Comando: `python -m unittest discover -s tests -v`.
 Resultado em 02/11/2026: doze testes aprovados com unittest e Streamlit AppTest.
 
@@ -32,7 +35,7 @@ O AppTest valida execução e widgets, mas não simula o gesto de clique no canv
 
 ## Conferência visual concluída
 
-Em 02/11/2026, a autora realizou a conferência visual local e confirmou o funcionamento dos seguintes itens:
+Em 02/11/2026, realizei a conferência visual local e confirmei o funcionamento dos seguintes itens:
 
 1. As duas abas, textos, gráficos e tema escuro/verde.
 2. Seleção de gênero na aba 2, atualizando KPIs, ranking e dispersão.
@@ -40,20 +43,20 @@ Em 02/11/2026, a autora realizou a conferência visual local e confirmou o funci
 4. Limpeza da seleção anterior ao mudar os filtros da sidebar.
 5. Limite de 27 artistas nos dois dashboards e rolagem do ranking.
 
-Resultado: conferência visual aprovada pela autoria. Esse registro corresponde
-ao teste manual informado pela estudante, separado dos doze testes automatizados
-aprovados na última execução registrada em 02/11/2026.
+Confirmei o funcionamento dos itens acima no teste manual. Registro esse
+resultado separadamente dos doze testes automatizados aprovados na última
+execução registrada em 02/11/2026.
 
 ## Publicação
 
-A autora informou a conclusão do deploy no Streamlit Community Cloud.
+Concluí o deploy no Streamlit Community Cloud.
 
 - **URL:** [Dashboard Spotify](https://brendalu2005-spotifystreamingperformance.streamlit.app/).
 - **Entrada do projeto:** `app.py`, branch `main`.
 - **Evidência disponível:** [captura da aplicação publicada](evidencia_app_publicado.jpg).
 
-A captura mostra a interface publicada com tema escuro/verde, sidebar e abas.
-Ainda não foi registrado o teste funcional completo da versão publicada em
-janela anônima. Para concluir esse registro, verificar acesso sem login,
-carregamento das duas abas, filtros, limite de artistas, seleção vinculada e
-rolagem do ranking. A validação local não é apresentada como teste da URL pública.
+Incluí a captura da interface publicada com tema escuro/verde, sidebar e abas.
+Ainda preciso registrar o teste funcional completo da versão publicada em
+janela anônima: acesso sem login, carregamento das duas abas, filtros, limite
+de artistas, seleção vinculada e rolagem do ranking. Não apresento a validação
+local como teste da URL pública.
